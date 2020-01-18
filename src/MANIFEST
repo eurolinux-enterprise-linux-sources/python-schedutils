@@ -1,0 +1,8 @@
+COPYING
+pchrt.py
+ptaskset.py
+setup.py
+rpm/SPECS/python-schedutils.spec
+MANIFEST
+python-schedutils/schedutils.c
+Makefile
