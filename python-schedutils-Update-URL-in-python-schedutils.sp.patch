@@ -1,0 +1,30 @@
+From ac9a2b761feaa93b56816ad70bb823e7c984ecb4 Mon Sep 17 00:00:00 2001
+From: John Kacur <jkacur@redhat.com>
+Date: Thu, 30 Jun 2016 14:31:37 +0200
+Subject: [PATCH 2/2] python-schedutils: Update URL in python-schedutils.spec
+
+Update URL in python-schedutils.spec to show the proper location
+
+Signed-off-by: John Kacur <jkacur@redhat.com>
+---
+ rpm/SPECS/python-schedutils.spec | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/rpm/SPECS/python-schedutils.spec b/rpm/SPECS/python-schedutils.spec
+index 084f0978a4ac..8372a898ac1c 100644
+--- a/rpm/SPECS/python-schedutils.spec
++++ b/rpm/SPECS/python-schedutils.spec
+@@ -6,8 +6,8 @@ Name: python-schedutils
+ Version: 0.4
+ Release: 2%{?dist}
+ License: GPLv2
+-URL: http://git.kernel.org/?p=linux/kernel/git/acme/python-schedutils.git
+-Source: http://userweb.kernel.org/~acme/python-schedutils/%{name}-%{version}.tar.bz2
++URL: https://www.kernel.org/pub/scm/libs/python/python-schedutils/python-schedutils.git
++Source: %{name}-%{version}.tar.bz2
+ Group: System Environment/Libraries
+ BuildRequires: python-devel
+ BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-- 
+2.4.11
+

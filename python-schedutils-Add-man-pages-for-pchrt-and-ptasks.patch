@@ -1,0 +1,104 @@
+From cfcbaa7607f0e57eedc4841c2e430a3065f13298 Mon Sep 17 00:00:00 2001
+From: John Kacur <jkacur@redhat.com>
+Date: Tue, 10 May 2016 16:55:43 +0200
+Subject: [PATCH 2/2] python-schedutils: Add man pages for pchrt and ptaskset
+
+Add some minimal man pages based on the output of --help for
+pchrt and ptaskset
+
+Signed-off-by: John Kacur <jkacur@redhat.com>
+---
+ pchrt.1    | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ ptaskset.1 | 26 ++++++++++++++++++++++++++
+ 2 files changed, 73 insertions(+)
+ create mode 100644 pchrt.1
+ create mode 100644 ptaskset.1
+
+diff --git a/pchrt.1 b/pchrt.1
+new file mode 100644
+index 000000000000..cc5136d4dbda
+--- /dev/null
++++ b/pchrt.1
+@@ -0,0 +1,47 @@
++.\"                                      Hey, EMACS: -*- nroff -*-
++.TH PCHRT 1 "May 10 2016"
++.SH NAME
++.B pchrt (python\-schedutils) \- manipulate the real-time attributes of a process
++.SH SYNOPSIS
++pchrt [options] [prio] [pid | cmd [args...]]
++.SH OPTIONS
++.TP
++.B  \-b, \-\-batch
++set policy to SCHED_BATCH
++.TP
++.B  \-f, \-\-fifo
++set policy to SCHED_FIFO
++.TP
++.B  \-i, \-\-idle
++set policy to SCHED_IDLE
++.TP
++.B  \-p, \-\-pid
++operate on existing given pid
++.TP
++.B  \-m, \-\-max
++show min and max valid priorities
++.TP
++.B  \-o, \-\-other
++set policy to SCHED_OTHER
++.TP
++.B  \-r, \-\-rr
++set policy to SCHED_RR (default)
++.TP
++.B  \-R, \-\-reset-on-fork
++set SCHED_RESET_ON_FORK for FIFO or RR
++.TP
++.B  \-h, \-\-help
++display help
++.TP
++.B Note:
++You must give a priority if changing policy.
++.SH SEE ALSO
++.BR chrt (1)
++.SH AUTHOR
++pchrt was written by Arnaldo Carvalho de Melo <acme@redhat.com>
++.br
++as part of python\-schedutils
++.PP
++This manual page was written by John Kacur <jkacur@redhat.com>
++.PP
++Report bugs and send patches to <tuna-devel@lists.fedorahosted.org>
+diff --git a/ptaskset.1 b/ptaskset.1
+new file mode 100644
+index 000000000000..022d8f8bed65
+--- /dev/null
++++ b/ptaskset.1
+@@ -0,0 +1,26 @@
++.\"                                      Hey, EMACS: -*- nroff -*-
++.TH PTASKSET 1 "May 10 2016"
++.SH NAME
++.B ptaskset (python\-schedutils) \- set or get the affinity of a process
++.SH SYNOPSIS
++ptaskset [options] [mask | cpu\-list] [pid | cmd [args...]]
++.SH OPTIONS
++.TP
++.B \-p, \-\-pid
++operate on existing given pid
++.TP
++.B \-c, \-\-cpu\-list
++display and specify cpus in list format
++.TP
++.B \-h, \-\-help
++display help
++.SH SEE ALSO
++.BR taskset (1)
++.SH AUTHOR
++ptaskset was written by Arnaldo Carvalho de Melo <acme@redhat.com>
++.br
++as part of python\-schedutils
++.PP
++This manual page was written by John Kacur <jkacur@redhat.com>
++.PP
++Report bugs and send patches to <tuna-devel@lists.fedorahosted.org>
+-- 
+2.4.11
+

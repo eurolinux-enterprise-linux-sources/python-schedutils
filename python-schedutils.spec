@@ -4,7 +4,7 @@
 Summary: Linux scheduler python bindings
 Name: python-schedutils
 Version: 0.4
-Release: 4%{?dist}
+Release: 6%{?dist}
 License: GPLv2
 URL: http://git.kernel.org/?p=linux/kernel/git/acme/python-schedutils.git
 Source: http://userweb.kernel.org/~acme/python-schedutils/%{name}-%{version}.tar.bz2
@@ -12,12 +12,23 @@ Group: System Environment/Libraries
 BuildRequires: python-devel
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+Patch1: python-schedutils-Correct-typos-in-usage-messages.patch
+Patch2: python-schedutils-Add-man-pages-for-pchrt-and-ptasks.patch
+Patch3: Update-spec-file-to-install-man-pages-for-pchrt-and-.patch
+Patch4: schedutils.c-added-support-for-SCHED_DEADLINE.patch
+Patch5: python-schedutils-Update-URL-in-python-schedutils.sp.patch
+
 %description
 Python interface for the Linux scheduler sched_{get,set}{affinity,scheduler}
 functions and friends.
 
 %prep
 %setup -q
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 %{__python} setup.py build
@@ -28,6 +39,9 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
 cp -p pchrt.py %{buildroot}%{_bindir}/pchrt
 cp -p ptaskset.py %{buildroot}%{_bindir}/ptaskset
+mkdir -p %{buildroot}%{_mandir}/man1
+gzip -c pchrt.1 > %{buildroot}%{_mandir}/man1/pchrt.1.gz
+gzip -c ptaskset.1 > %{buildroot}%{_mandir}/man1/ptaskset.1.gz
 
 %clean
 rm -rf %{buildroot}
@@ -41,8 +55,20 @@ rm -rf %{buildroot}
 %if "%{python_ver}" >= "2.5"
 %{python_sitearch}/*.egg-info
 %endif
+%{_mandir}/man1/pchrt.1.gz
+%{_mandir}/man1/ptaskset.1.gz
 
 %changelog
+* Tue Jul 05 2016 John Kacur <jkacur@redhat.com> - 0.4-6
+- python-schedutils-Update-URL-in-python-schedutils.sp.patch
+- schedutils.c-added-support-for-SCHED_DEADLINE.patch
+Resolves: rhbz#1298388
+
+* Tue May 10 2016 John Kacur <jkacur@redhat.com> - 0.4-5
+- Add man pages for pchrt and ptaskset
+- Fix and update usage messages for pchrt and ptaskset
+- Resolves:rhbz#948381
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.4-4
 - Mass rebuild 2014-01-24
 
@@ -72,8 +98,8 @@ rm -rf %{buildroot}
 * Tue Jun 10 2008 Arnaldo Carvalho de Melo <acme@redhat.com> - 0.1-3
 - add dist to the release tag
 
-* Tue Dec 19 2007 Arnaldo Carvalho de Melo <acme@redhat.com> - 0.1-2
+* Wed Dec 19 2007 Arnaldo Carvalho de Melo <acme@redhat.com> - 0.1-2
 - First build into rhel5-rt
 
-* Tue Dec 19 2007 Arnaldo Carvalho de Melo <acme@redhat.com> - 0.1-1
+* Wed Dec 19 2007 Arnaldo Carvalho de Melo <acme@redhat.com> - 0.1-1
 - Initial package

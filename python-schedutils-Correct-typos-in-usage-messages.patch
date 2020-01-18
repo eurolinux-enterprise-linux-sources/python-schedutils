@@ -1,0 +1,55 @@
+From 4f039736f02e3cc8d3b2240d3bb05ae6f8600dee Mon Sep 17 00:00:00 2001
+From: John Kacur <jkacur@redhat.com>
+Date: Tue, 10 May 2016 15:59:31 +0200
+Subject: [PATCH 1/2] python-schedutils: Correct typos in usage messages
+
+Correct typos in usage messages
+	- "chrt" should say "pchrt"
+	- "taskset" should say "ptaskset"
+
+Also update the email address for bug reports and patches.
+
+Signed-off-by: John Kacur <jkacur@redhat.com>
+---
+ pchrt.py    | 4 ++--
+ ptaskset.py | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/pchrt.py b/pchrt.py
+index c4f1f2c5e5ec..0761792454fa 100755
+--- a/pchrt.py
++++ b/pchrt.py
+@@ -18,7 +18,7 @@ import os, schedutils, sys
+ 
+ def usage():
+ 	print '''pchrt (python-schedutils)
+-usage: chrt [options] [prio] [pid | cmd [args...]]
++usage: pchrt [options] [prio] [pid | cmd [args...]]
+ manipulate real-time attributes of a process
+   -b, --batch                        set policy to SCHED_BATCH
+   -f, --fifo                         set policy to SCHED_FIFO
+@@ -32,7 +32,7 @@ manipulate real-time attributes of a process
+ 
+ You must give a priority if changing policy.
+ 
+-Report bugs and send patches to <acme@ghostprotocols.net>'''
++Report bugs and send patches to <tuna-devel@lists.fedorahosted.org>'''
+ 	return
+ 
+ def show_priority_limits(policy):
+diff --git a/ptaskset.py b/ptaskset.py
+index 15f0ec5bfa1f..afd18477f109 100755
+--- a/ptaskset.py
++++ b/ptaskset.py
+@@ -18,7 +18,7 @@ import os, schedutils, sys
+ 
+ def usage():
+ 	print '''ptaskset (python-schedutils)
+-usage: taskset [options] [mask | cpu-list] [pid | cmd [args...]]
++usage: ptaskset [options] [mask | cpu-list] [pid | cmd [args...]]
+ set or get the affinity of a process
+ 
+   -p, --pid                  operate on existing given pid
+-- 
+2.4.11
+
