@@ -4,7 +4,7 @@
 Summary: Linux scheduler python bindings
 Name: python-schedutils
 Version: 0.4
-Release: 1%{?dist}
+Release: 4%{?dist}
 License: GPLv2
 URL: http://git.kernel.org/?p=linux/kernel/git/acme/python-schedutils.git
 Source: http://userweb.kernel.org/~acme/python-schedutils/%{name}-%{version}.tar.bz2
@@ -43,6 +43,12 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.4-4
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.4-3
+- Mass rebuild 2013-12-27
+
 * Thu Aug 22 2013 John Kacur <jkacur@redhat.com> - 0.4-1
 - Rebuilding for rhel7.0
 
